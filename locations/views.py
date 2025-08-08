@@ -1,9 +1,5 @@
 from django.views.generic import ListView
-from django.shortcuts import render
 from .models import State, City, District
-
-def dashboard_view(request):
-    return render(request, 'pages/dashboard.html')
 
 class StateListView(ListView):
     model = State

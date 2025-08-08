@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.urls import path
 
-from locations.views import StateListView, CityListView, DistrictListView, dashboard_view
-from companies.views import CompanyListView
+from locations.views import StateListView, CityListView, DistrictListView
+from companies.views import CompanyListView, dashboard_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
