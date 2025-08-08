@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path
 
 from locations.views import StateListView, CityListView, DistrictListView, dashboard_view
+from companies.views import CompanyListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -9,4 +10,5 @@ urlpatterns = [
     path('states-table/', StateListView.as_view(), name='state_list'),
     path('cities-table/', CityListView.as_view(), name='city_list'),
     path('district-table/', DistrictListView.as_view(), name='district_list'),
+    path('company-table/', CompanyListView.as_view(), name='company_list'),
 ]

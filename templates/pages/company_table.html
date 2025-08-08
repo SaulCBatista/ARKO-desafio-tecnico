@@ -1,7 +1,7 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
 
-{% block title %} Cities {% endblock title %}
+{% block title %} Company {% endblock title %}
 
 {% block content %}
 <div class="content">
@@ -9,13 +9,13 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title"> Cities Table </h4>
+          <h4 class="card-title"> Company Table </h4>
         </div>
         <div class="card-body">
           <div class="mb-3">
             <ul class="nav nav-tabs">
               <li class="nav-item">
-                <a class="nav-link {% if request.resolver_match.url_name == 'state_table' %}active{% endif %}" href="{% url 'state_list' %}">States</a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'state-list' %}active{% endif %}" href="{% url 'state_list' %}">Company</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link {% if request.resolver_match.url_name == 'city_table' %}active{% endif %}" href="{% url 'city_list' %}">Cities</a>
@@ -33,26 +33,35 @@
             <table class="table tablesorter">
               <thead class="text-primary">
                 <tr>
-                  <th>Name</th>
-                  <th>State</th>
-                  <th>Region</th>
+                  <th>BASIC CNPJ</th>
+                  <th>CORPORATE NAME</th>
+                  <th>LEGAL NATURE</th>
+                  <th>RESPONSIBLE QUALIFICATION</th>
+                  <th>SHARE CAPITAL</th>
+                  <th>COMPANY SIZE</th>
+                  <th>FEDERATIVE ENTITY</th>
                 </tr>
               </thead>
               <tbody>
-                {% for city in cities %}
+                {% for company in companies %}
                 <tr>
-                  <td>{{ city.name }}</td>
-                  <td>{{ city.state.name }}</td>
-                  <td>{{ city.state.region }}</td>
+                  <td>{{ company.basic_cnpj }}</td>
+                  <td>{{ company.corporate_name }}</td>
+                  <td>{{ company.legal_nature }}</td>
+                  <td>{{ company.responsible_qualification }}</td>
+                  <td>{{ company.share_capital }}</td>
+                  <td>{{ company.company_size }}</td>
+                  <td>{{ company.federative_entity }}</td>
                 </tr>
                 {% empty %}
                 <tr>
-                  <td colspan="4" class="text-center">No cities found</td>
+                  <td colspan="4" class="text-center">No companies found</td>
                 </tr>
                 {% endfor %}
               </tbody>
             </table>
           </div>
+
           
           {% if is_paginated %}
             {% with total=page_obj.paginator.num_pages current=page_obj.number %}

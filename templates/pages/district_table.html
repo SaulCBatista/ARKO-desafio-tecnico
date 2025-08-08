@@ -24,7 +24,7 @@
                 <a class="nav-link {% if request.resolver_match.url_name == 'district_table' %}active{% endif %}" href="{% url 'district_list' %}">Districts</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="">Companies</a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'company_table' %}active{% endif %}" href="{% url 'company_list' %}">Companies</a>
               </li>
             </ul>
           </div>
