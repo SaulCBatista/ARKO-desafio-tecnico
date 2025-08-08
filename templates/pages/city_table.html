@@ -1,0 +1,100 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %} Cities {% endblock title %}
+
+{% block content %}
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"> Cities Table </h4>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link {% if request.resolver_match.url_name == 'state_table' %}active{% endif %}" href="{% url 'state_list' %}">States</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if request.resolver_match.url_name == 'city_table' %}active{% endif %}" href="{% url 'city_list' %}">Cities</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if request.resolver_match.url_name == 'district_table' %}active{% endif %}" href="{% url 'district_list' %}">Districts</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="">Companies</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table tablesorter">
+              <thead class="text-primary">
+                <tr>
+                  <th>Name</th>
+                  <th>State</th>
+                  <th>Region</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for city in cities %}
+                <tr>
+                  <td>{{ city.name }}</td>
+                  <td>{{ city.state.name }}</td>
+                  <td>{{ city.state.region }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="4" class="text-center">No cities found</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          
+          {% if is_paginated %}
+            {% with total=page_obj.paginator.num_pages current=page_obj.number %}
+              {% if total > 1 %}
+                <ul class="pagination justify-content-center">
+                  
+                  {% if page_obj.has_previous %}
+                    <li class="page-item">
+                      <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+                    </li>
+                  {% endif %}
+
+                  {% if current > 3 %}
+                    <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+                    {% if current > 4 %}<li class="page-item disabled"><span class="page-link">...</span></li>{% endif %}
+                  {% endif %}
+
+                  {% for num in page_obj.paginator.page_range %}
+                    {% if num >= current|add:"-2" and num <= current|add:"2" %}
+                      <li class="page-item {% if num == current %}active{% endif %}">
+                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+
+                  {% if current < total|add:"-2" %}
+                    {% if current < total|add:"-3" %}<li class="page-item disabled"><span class="page-link">...</span></li>{% endif %}
+                    <li class="page-item"><a class="page-link" href="?page={{ total }}">{{ total }}</a></li>
+                  {% endif %}
+
+                  {% if page_obj.has_next %}
+                    <li class="page-item">
+                      <a class="page-link" href="?page={{ page_obj.next_page_number }}">&gt;</a>
+                    </li>
+                  {% endif %}
+                </ul>
+              {% endif %}
+            {% endwith %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

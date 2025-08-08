@@ -1,12 +1,12 @@
 <ul class="nav">
   <li class="{% if 'dashboard' in segment %} active {% endif %}">
-    <a href="/">
+    <a href="{% url 'dashboard' %}">
       <i class="tim-icons icon-chart-pie-36"></i>
       <p>Dashboard</p>
     </a>
   </li>
   <li class="{% if 'tables' in segment %} active {% endif %}">
-    <a href="">
+    <a href="{% url 'state_list' %}">
       <i class="tim-icons icon-paper"></i>
       <p>Table List</p>
     </a>
