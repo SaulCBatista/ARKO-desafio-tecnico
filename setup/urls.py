@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 
 from locations.views import StateListView, CityListView, DistrictListView
-from companies.views import CompanyListView, dashboard_view
+from companies.views import CompanyListView, dashboard_view, import_companies_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -11,4 +11,5 @@ urlpatterns = [
     path('cities-table/', CityListView.as_view(), name='city_list'),
     path('district-table/', DistrictListView.as_view(), name='district_list'),
     path('company-table/', CompanyListView.as_view(), name='company_list'),
+    path('import/', import_companies_view, name='import_companies'),
 ]

@@ -5,6 +5,27 @@
 
 {% block content %}
 <div class="content">
+    
+    
+    <div class="mb-4 d-flex justify-content-between align-items-center">
+    <h2>Dashboard</h2>
+    <form id="import-form" method="POST" enctype="multipart/form-data" action="">
+        {% csrf_token %}
+        <div class="input-group">
+            <input type="file" name="zip_file" class="form-control" accept=".zip" required>
+            <button type="submit" class="btn btn-primary">Import Data</button>
+        </div>
+    </form>
+    </div>
+
+    {% if messages %}
+        <div class="alert alert-info mt-2">
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
 
     <div class="row">
         <div class="col-lg-6">
