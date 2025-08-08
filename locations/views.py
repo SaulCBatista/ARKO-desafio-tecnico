@@ -20,5 +20,5 @@ class CityListView(ListView):
 class DistrictListView(ListView):
     model = District
     template_name = 'pages/district_table.html'
-    context_object_name = 'district'
+    context_object_name = 'districts'
     paginate_by = 10
