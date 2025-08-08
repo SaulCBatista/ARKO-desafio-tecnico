@@ -17,7 +17,7 @@ Este é um projeto web desenvolvido com **Django** para visualização de dados 
 
 ### 1. Clone o repositório e entre no diretório
 ```bash
-git clone https://github.com/seu-usuario/seu-projeto.git
+git clone https://github.com/SaulCBatista/ARKO-desafio-tecnico.git
 cd seu-projeto
 ```
 ### 2. Crie e ative um ambiente virtual (opcional)
